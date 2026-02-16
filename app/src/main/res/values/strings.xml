@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">Back Pain Exercise</string>
+    <string name="home_title">Back Pain Exercises</string>
+    <string name="beginner_set">Beginner Set</string>
+    <string name="core_strength_set">Core Strength</string>
+    <string name="flexibility_set">Flexibility</string>
+    <string name="start_exercises">Start Exercises</string>
+    <string name="exercise_completed">Exercise Completed</string>
+    <string name="timer_start">Start</string>
+    <string name="timer_pause">Pause</string>
+    <string name="timer_reset">Reset</string>
+    <string name="next_exercise">Next</string>
+    <string name="previous_exercise">Previous</string>
+    <string name="completed">Completed</string>
+    <string name="mark_completed">Mark as Completed</string>
+    <string name="instructions">Instructions</string>
+    <string name="watch_video">Watch Video</string>
+    <string name="no_internet_video">No internet connection for video</string>
+    <string name="exercise_plank">Plank</string>
+    <string name="exercise_back_arch">Back Arch</string>
+    <string name="exercise_bird_dog">Bird Dog</string>
+    <string name="exercise_table_pose">Table Pose</string>
+    <string name="exercise_child_pose">Child Pose</string>
+    <string name="exercise_extension">Extension Exercise</string>
+    <string name="exercise_cat_pose">Cat Pose</string>
+    <string name="exercise_pelvic_tilt">Pelvic Tilt</string>
+    <string name="exercise_gluteal_stretch">Gluteal Stretch</string>
+    <string name="exercise_side_plank">Side Plank</string>
+    <string name="exercise_bridge">Bridge</string>
+</resources>
