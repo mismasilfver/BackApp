@@ -10,15 +10,28 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.backpain.exercise.R
+import com.backpain.exercise.presentation.navigation.Screen
 import com.backpain.exercise.presentation.theme.BackPainExerciseAppTheme
+import com.backpain.exercise.presentation.viewmodel.HomeViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
-    navController: NavController
+    navController: NavController,
+    viewModel: HomeViewModel = hiltViewModel()
 ) {
+    val exerciseSets by viewModel.exerciseSets.collectAsState()
+    val isLoading by viewModel.isLoading.collectAsState()
+
+    LaunchedEffect(Unit) {
+        if (exerciseSets.isEmpty()) {
+            viewModel.loadExerciseSets()
+        }
+    }
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -26,42 +39,52 @@ fun HomeScreen(
             )
         }
     ) { paddingValues ->
-        LazyColumn(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(paddingValues)
-                .padding(16.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp)
-        ) {
-            // TODO: Replace with actual exercise sets from ViewModel
-            item {
-                ExerciseSetCard(
-                    title = stringResource(R.string.beginner_set),
-                    description = "Gentle movements for pain relief",
-                    exerciseCount = 4,
-                    durationMinutes = 15,
-                    onClick = { /* TODO: Navigate to exercise set */ }
-                )
+        if (isLoading && exerciseSets.isEmpty()) {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(paddingValues),
+                contentAlignment = Alignment.Center
+            ) {
+                CircularProgressIndicator()
             }
-            
-            item {
-                ExerciseSetCard(
-                    title = stringResource(R.string.core_strength_set),
-                    description = "Building support muscles",
-                    exerciseCount = 4,
-                    durationMinutes = 20,
-                    onClick = { /* TODO: Navigate to exercise set */ }
-                )
-            }
-            
-            item {
-                ExerciseSetCard(
-                    title = stringResource(R.string.flexibility_set),
-                    description = "Improving range of motion",
-                    exerciseCount = 4,
-                    durationMinutes = 18,
-                    onClick = { /* TODO: Navigate to exercise set */ }
-                )
+        } else {
+            LazyColumn(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(paddingValues)
+                    .padding(16.dp),
+                verticalArrangement = Arrangement.spacedBy(16.dp)
+            ) {
+                items(exerciseSets) { exerciseSet ->
+                    ExerciseSetCard(
+                        title = exerciseSet.name,
+                        description = exerciseSet.description,
+                        exerciseCount = exerciseSet.exerciseIds.size,
+                        durationMinutes = exerciseSet.estimatedDurationMinutes,
+                        onClick = {
+                            navController.navigate(
+                                Screen.ExerciseSetDetail.createRoute(exerciseSet.id)
+                            )
+                        }
+                    )
+                }
+                
+                if (exerciseSets.isEmpty()) {
+                    item {
+                        Box(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(200.dp),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Text(
+                                text = "No exercise sets available",
+                                style = MaterialTheme.typography.bodyLarge
+                            )
+                        }
+                    }
+                }
             }
         }
     }
