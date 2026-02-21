@@ -7,6 +7,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.backpain.exercise.presentation.screens.home.HomeScreen
 import com.backpain.exercise.presentation.screens.exercise.ExerciseSetDetailScreen
+import com.backpain.exercise.presentation.screens.exercise.ExerciseDetailScreen
 
 @Composable
 fun BackPainExerciseNavigation(
@@ -28,7 +29,13 @@ fun BackPainExerciseNavigation(
             )
         }
         
-        // TODO: Add ExerciseDetail screen when implemented
+        composable(Screen.ExerciseDetail.route) { backStackEntry ->
+            val exerciseId = backStackEntry.arguments?.getString("exerciseId") ?: ""
+            ExerciseDetailScreen(
+                exerciseId = exerciseId,
+                navController = navController
+            )
+        }
     }
 }
 
