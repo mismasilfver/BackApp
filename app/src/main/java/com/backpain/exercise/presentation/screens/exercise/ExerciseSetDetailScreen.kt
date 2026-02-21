@@ -4,6 +4,9 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.CheckCircle
+import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -39,7 +42,7 @@ fun ExerciseSetDetailScreen(
                 navigationIcon = {
                     IconButton(onClick = { navController.navigateUp() }) {
                         Icon(
-                            imageVector = androidx.compose.material.icons.Icons.Default.ArrowBack,
+                            imageVector = ArrowBack,
                             contentDescription = "Back"
                         )
                     }
@@ -174,7 +177,7 @@ private fun ExerciseCard(
             // Completion Status
             if (exercise.isCompleted) {
                 Icon(
-                    imageVector = androidx.compose.material.icons.Icons.Default.CheckCircle,
+                    imageVector = CheckCircle,
                     contentDescription = "Completed",
                     tint = MaterialTheme.colorScheme.primary
                 )
@@ -182,7 +185,7 @@ private fun ExerciseCard(
 
             // Navigation Arrow
             Icon(
-                imageVector = androidx.compose.material.icons.Icons.Default.KeyboardArrowRight,
+                imageVector = KeyboardArrowRight,
                 contentDescription = "Navigate to exercise",
                 tint = MaterialTheme.colorScheme.onSurfaceVariant
             )

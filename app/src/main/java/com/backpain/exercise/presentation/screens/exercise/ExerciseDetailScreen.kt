@@ -4,8 +4,12 @@ import androidx.compose.animation.core.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.CheckCircle
+import androidx.compose.material.icons.filled.KeyboardArrowRight
+import androidx.compose.material.icons.filled.Pause
+import androidx.compose.material.icons.filled.PlayArrow
+import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -43,7 +47,7 @@ fun ExerciseDetailScreen(
                 navigationIcon = {
                     IconButton(onClick = { navController.navigateUp() }) {
                         Icon(
-                            imageVector = Icons.Default.ArrowBack,
+                            imageVector = ArrowBack,
                             contentDescription = "Back"
                         )
                     }
@@ -127,7 +131,7 @@ private fun ExerciseDetailContent(
                     )
                     if (exercise.isCompleted) {
                         Icon(
-                            imageVector = Icons.Default.CheckCircle,
+                            imageVector = CheckCircle,
                             contentDescription = "Completed",
                             tint = MaterialTheme.colorScheme.primary
                         )
@@ -263,7 +267,7 @@ private fun ExerciseDetailContent(
                         }
                     ) {
                         Icon(
-                            imageVector = Icons.Default.PlayArrow,
+                            imageVector = PlayArrow,
                             contentDescription = "Play Video"
                         )
                     }
@@ -297,7 +301,7 @@ private fun TimerControls(
                     modifier = Modifier.weight(1f)
                 ) {
                     Icon(
-                        imageVector = Icons.Default.Refresh,
+                        imageVector = Refresh,
                         contentDescription = "Reset",
                         modifier = Modifier.size(20.dp)
                     )
@@ -316,7 +320,7 @@ private fun TimerControls(
                     )
                 ) {
                     Icon(
-                        imageVector = Icons.Default.Pause,
+                        imageVector = Pause,
                         contentDescription = "Pause",
                         modifier = Modifier.size(20.dp)
                     )
@@ -332,7 +336,7 @@ private fun TimerControls(
                     modifier = Modifier.weight(1f)
                 ) {
                     Icon(
-                        imageVector = Icons.Default.PlayArrow,
+                        imageVector = PlayArrow,
                         contentDescription = "Start",
                         modifier = Modifier.size(20.dp)
                     )
